@@ -29,7 +29,7 @@ class Users extends CI_Controller
 			$data['usersList'] = $this->user_model->getUsers();
 			$this->load->view('listUsers', $data);
 		} else {
-			redirect('welcom/dashboard');
+			redirect('welcome/dashboard');
 		}
 	}
 
@@ -38,7 +38,7 @@ class Users extends CI_Controller
 		if ($this->session->userdata('role') == "admin") {
 			$this->load->view('addUser');
 		} else {
-			redirect('welcom/dashboard');
+			redirect('welcome/dashboard');
 		}
 	}
 
@@ -56,7 +56,7 @@ class Users extends CI_Controller
 			$data['userData'] = $this->user_model->getUserById($userId);
 			$this->load->view('editUser', $data);
 		} else {
-			redirect('welcom/dashboard');
+			redirect('welcome/dashboard');
 		}
 	}
 
@@ -80,7 +80,7 @@ class Users extends CI_Controller
 
 			redirect('users/listUsers');
 		} else {
-			redirect('welcom/dashboard');
+			redirect('welcome/dashboard');
 		}
 	}
 
@@ -102,7 +102,7 @@ class Users extends CI_Controller
 				redirect('users/listUsers');
 			}
 		} else {
-			redirect('welcom/dashboard');
+			redirect('welcome/dashboard');
 		}
 	}
 
