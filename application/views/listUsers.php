@@ -35,8 +35,6 @@
                                     <th>Name</th>
                                     <th>Username</th>
                                     <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Station</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -64,16 +62,6 @@
                                         <td>
                                             <?php
                                             echo $rowc['email'];
-                                            ?></td>
-                                        <td>
-                                            <?php
-                                            echo $rowc['role'];
-                                            ?></td>
-                                        <td>
-                                            <?php
-                                            // $showFlag = $rowc['is_active'] == 1 ? "Yes" : "No";
-                                            // echo $showFlag;
-                                            echo $rowc['station'];
                                             ?></td>
 
                                         <td>

@@ -25,13 +25,21 @@ class Users extends CI_Controller
 
 	public function listUsers()
 	{
-		$data['usersList'] = $this->user_model->getUsers();
-		$this->load->view('listUsers', $data);
+		if ($this->session->userdata('role') == "admin") {
+			$data['usersList'] = $this->user_model->getUsers();
+			$this->load->view('listUsers', $data);
+		} else {
+			redirect('welcom/dashboard');
+		}
 	}
 
 	public function addUser()
 	{
-		$this->load->view('addUser');
+		if ($this->session->userdata('role') == "admin") {
+			$this->load->view('addUser');
+		} else {
+			redirect('welcom/dashboard');
+		}
 	}
 
 	public function myProfile()
@@ -43,9 +51,13 @@ class Users extends CI_Controller
 
 	public function editUser()
 	{
-		$userId =  $this->input->post('userid');
-		$data['userData'] = $this->user_model->getUserById($userId);
-		$this->load->view('editUser', $data);
+		if ($this->session->userdata('role') == "admin") {
+			$userId =  $this->input->post('userid');
+			$data['userData'] = $this->user_model->getUserById($userId);
+			$this->load->view('editUser', $data);
+		} else {
+			redirect('welcom/dashboard');
+		}
 	}
 
 	//------------------------------------------------------------------------------->>>>
@@ -54,35 +66,43 @@ class Users extends CI_Controller
 
 	public function createUser()
 	{
-		$insertData['id'] = uniqid();
+		if ($this->session->userdata('role') == "admin") {
+			$insertData['id'] = uniqid();
 
-		$insertData['name'] = $this->input->post('name');
-		$shortname = str_split($this->input->post('name'), 15);
-		$insertData['username'] = str_replace(" ", "_", strtolower($shortname[0]));
-		$insertData['email'] = $this->input->post('email');
-		$insertData['password'] = base64_encode($this->input->post('password'));
-		$insertData['otherdata'] = "";
+			$insertData['name'] = $this->input->post('name');
+			$shortname = str_split($this->input->post('name'), 15);
+			$insertData['username'] = str_replace(" ", "_", strtolower($shortname[0]));
+			$insertData['email'] = $this->input->post('email');
+			$insertData['password'] = base64_encode($this->input->post('password'));
+			$insertData['otherdata'] = "";
 
-		$this->user_model->createUser($insertData);
+			$this->user_model->createUser($insertData);
 
-		redirect('users/listUsers');
+			redirect('users/listUsers');
+		} else {
+			redirect('welcom/dashboard');
+		}
 	}
 
 	public function updateUser()
 	{
-		$updateData['id'] = $this->input->post('userId');
-		$updateData['name'] = $this->input->post('name');
-		$updateData['email'] = $this->input->post('email');
-		$updateData['otherdata'] = "";
-		$isActiveFlag = $this->input->post('isactive');
-		$updateData['is_active'] = 0;
-		if ($isActiveFlag == "yes") {
-			$updateData['is_active'] = 1;
-		}
+		if ($this->session->userdata('role') == "admin") {
+			$updateData['id'] = $this->input->post('userId');
+			$updateData['name'] = $this->input->post('name');
+			$updateData['email'] = $this->input->post('email');
+			$updateData['otherdata'] = "";
+			$isActiveFlag = $this->input->post('isactive');
+			$updateData['is_active'] = 0;
+			if ($isActiveFlag == "yes") {
+				$updateData['is_active'] = 1;
+			}
 
-		$response = $this->user_model->updateUser($updateData);
-		if ($response['status'] == true) {
-			redirect('users/listUsers');
+			$response = $this->user_model->updateUser($updateData);
+			if ($response['status'] == true) {
+				redirect('users/listUsers');
+			}
+		} else {
+			redirect('welcom/dashboard');
 		}
 	}
 

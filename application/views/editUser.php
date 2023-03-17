@@ -39,13 +39,6 @@
                                         <input type="hidden" id="userId" name="userId" value="<?php
                                                                                                 echo $userData['id'];
                                                                                                 ?>">
-                                        <input type="hidden" id="currentDistrict" name="currentDistrict" value="<?php
-                                                                                                                echo $userData['district'];
-                                                                                                                ?>">
-                                        <input type="hidden" id="stationId" name="stationId" value="<?php
-                                                                                                    echo $userData['station'];
-                                                                                                    ?>">
-
                                         <div class="form-group">
                                             <label>Name:</label>
                                             <input type="text" class="form-control" name="name" value="<?php
@@ -58,39 +51,6 @@
                                             <input type="email" class="form-control" name="email" value="<?php
                                                                                                             echo $userData['email'];
                                                                                                             ?>" required>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label>District:</label>
-                                                <select id="district" name="district" list="district" placeholder="district" class="select-selected">
-                                                    <option value="">Select District</option>
-                                                    <?php foreach ($districtsList as $key => $value) { ?>
-                                                        <option value="<?php echo $value['district']; ?>" <?php if ($value['district'] == $userData['district']) {
-                                                                                                                echo "selected";
-                                                                                                            } ?>><?php echo $value['district']; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Station:</label>
-                                                <select id="station" name="station" list="station" placeholder="station" class="select-selected">
-                                                    <option value="">Select Station</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <label>Role:</label>
-                                        <div class="form-group">
-                                            <select name="role" list="role" placeholder="role" class="select-selected">
-                                                <option value="admin" <?php if ($userData['role'] == "admin") {
-                                                                            echo "selected";
-                                                                        } ?>>Admin</option>
-                                                <option value="editor" <?php if ($userData['role'] == "editor") {
-                                                                            echo "selected";
-                                                                        } ?>>Editor</option>
-                                                <option value="guest" <?php if ($userData['role'] == "guest") {
-                                                                            echo "selected";
-                                                                        } ?>>Guest</option>
-                                            </select>
                                         </div>
 
                                         <div class="form-group">
@@ -163,63 +123,7 @@
 
             })
         </script>
-        <script type='text/javascript'>
-            // baseURL variable
-            var baseURL = "<?php echo base_url(); ?>";
 
-            $(document).ready(function() {
-
-
-                var districtName = $("#currentDistrict").val();
-                var stationid = $("#stationId").val();
-                $.ajax({
-                    url: '<?= base_url() ?>stations/getStationsByDistrict',
-                    method: 'post',
-                    data: {
-                        district: districtName
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        // Remove options 
-                        $('#station').find('option').not(':first').remove();
-
-                        // Add options
-                        $.each(response, function(index, data) {
-                            if (data['id'] === stationid) {
-                                $('#station').append('<option value="' + data['id'] + '" selected>' + data['name'] + '</option>');
-                            } else {
-                                $('#station').append('<option value="' + data['id'] + '">' + data['name'] + '</option>');
-                            }
-                        });
-                    }
-                });
-
-                // City change
-                $('#district').change(function() {
-                    var district = $(this).val();
-
-                    // AJAX request
-                    $.ajax({
-                        url: '<?= base_url() ?>stations/getStationsByDistrict',
-                        method: 'post',
-                        data: {
-                            district: district
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            // Remove options 
-                            $('#station').find('option').not(':first').remove();
-
-                            // Add options
-                            $.each(response, function(index, data) {
-                                $('#station').append('<option value="' + data['id'] + '">' + data['name'] + '</option>');
-                            });
-                        }
-                    });
-                });
-
-            });
-        </script>
 </body>
 
 </html>
