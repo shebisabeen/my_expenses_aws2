@@ -1,0 +1,13 @@
+.well{
+    background: #fff;
+    margin-top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+.logo{
+    height: 100px;
+}
+body,html{
+    height: 100%;
+    background: linear-gradient(35deg,rgb(90, 146, 90),#fff);
+}

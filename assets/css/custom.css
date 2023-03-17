@@ -1,0 +1,115 @@
+
+@media (min-width: 768px) {
+    .custom-content-wapper {
+        margin-top: 0px;
+    }
+    .custom-table{
+    }
+    .custom-sidebar{
+        margin-top: 10px;
+    }
+    .custom-button-add{
+        width: 8%;
+        float: right;
+    }
+    .custom-button-submit{
+        width: 10%;
+        float: right;
+    }
+}
+@media (max-width: 767px) {
+    .custom-content-wapper {
+        margin-top: 15px;
+    }
+    .custom-table{
+        display: block !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+    }
+    .custom-sidebar{
+        margin-top: 25px;
+    }
+    .custom-button-add{
+        width: 16%;
+        float: right;
+    }
+    .custom-button-submit{
+        width: 24%;
+        float: right;
+    }
+}
+.viewLabel {
+    text-align: right !important;
+}
+
+.box-min-height {
+    min-height: 550px;
+}
+.paginate-button-margin {
+    margin-left:10px;
+}
+
+.dashboard-card{
+    border-radius: 19px;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    cursor: context-menu;
+    margin: 3px 0 3px 0px;
+}   
+.dashboard-card:hover{
+    box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+} 
+.cornflowerblue{
+    background-color: cornflowerblue;
+}
+.cadetblue{
+    background-color: cadetblue;
+}
+.coral{
+    background-color: coral;
+}
+.hotpink{
+    background-color: hotpink;
+}
+.cornflowerblue:hover{
+    background-color: cornflowerblue;
+    border-style: solid;
+    border-color: #0e3c8f;
+    color: whitesmoke;
+}
+.cadetblue:hover{
+    background-color:cadetblue;
+    border-style: solid;
+    border-color: #125a5c;
+    color: whitesmoke;
+}
+.coral:hover{
+    background-color: coral;
+    border-style: solid;
+    border-color: #703018;
+    color: whitesmoke;
+}
+.hotpink:hover{
+    background-color: hotpink;
+    border-style: solid;
+    border-color: #7a1e4c;
+    color: whitesmoke;
+}
+.label-head{
+    position: absolute;
+    top: 30px;
+}
+.label-value{
+    position: absolute;
+    bottom: 10px;
+    font-size: 50px;
+    font-weight: 600;
+}
+.gap15{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.left10{
+    margin-left: 10px;
+}
