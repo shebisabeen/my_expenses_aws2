@@ -45,6 +45,7 @@ class User_model extends CI_Model
                     $this->session->set_userdata('name', $row->name);
                     $this->session->set_userdata('username', $row->username);
                     $this->session->set_userdata('email', $row->email);
+                    $this->session->set_userdata('role', $row->role);
                 } else {
                     return 'Username or Password is wrong';
                 }

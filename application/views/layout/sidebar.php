@@ -26,6 +26,18 @@
                     <i class="fa fa-dashboard"></i> <span>Types</span>
                 </a>
             </li>
+            <?php if ($this->session->userdata('role') == "admin") { ?>
+                <li class="treeview">
+                    <a href="<?php echo base_url(); ?>users/listUsers">
+                        <i class="fa fa-dashboard"></i> <span>Users</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="<?php echo base_url(); ?>users/addUser">
+                        <i class="fa fa-dashboard"></i> <span>Add User</span>
+                    </a>
+                </li>
+            <?php } ?>
             <li class="treeview">
                 <a href="<?php echo base_url(); ?>users/myProfile">
                     <i class="fa fa-dashboard"></i> <span>My Profile</span>
